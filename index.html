@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Johnstone Supply FAQ</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: white;
+      margin: 0;
+      padding: 2rem;
+      color: #000;
+    }
+    h1 {
+      text-align: center;
+    }
+    .search-bar {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .search-bar input {
+      padding: 0.5rem;
+      font-size: 1rem;
+      width: 300px;
+      background-color: #004990;
+      color: white;
+      border: none;
+      border-radius: 5px;
+    }
+    .faq-container {
+      background-color: #004990;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .faq-item {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .faq-question {
+      color: white;
+      padding: 1rem;
+      font-weight: bold;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      transition: background 0.3s, color 0.3s;
+    }
+    .faq-question.active {
+      background: white;
+      color: #004990;
+      border: 1px solid #004990;
+    }
+    .faq-answer {
+      display: none;
+      padding: 1rem;
+      background: white;
+      color: #000;
+    }
+    .faq-question span {
+      transition: transform 0.3s ease;
+    }
+    .faq-question.active span {
+      transform: rotate(180deg);
+      visibility: hidden;
+    }
+  </style>
+</head>
+<body>
+  <h1>Frequently Asked Questions</h1>
+  <div class="search-bar">
+    <input type="text" id="search" placeholder="Search..." />
+  </div>
+  <div class="faq-container" id="faq">
+    <!-- FAQ Items -->
+    <div class="faq-item">
+      <div class="faq-question">What is Johnstone Supply?<span>+</span></div>
+      <div class="faq-answer">
+        Johnstone Supply is a leading wholesale distributor of HVACR (heating, ventilation, air conditioning, and refrigeration) parts, equipment, and supplies. We serve contractors, technicians, and businesses with a wide range of trusted name brands and products.
+      </div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">What does 'wholesale only' mean, and who can buy from Johnstone Supply?<span>+</span></div>
+      <div class="faq-answer">
+        We serve licensed HVACR contractors, businesses, and professionals. Wholesale means that we typically do not sell directly to homeowners or the general public!
+      </div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">How do I make an account with Johnstone Supply?<span>+</span></div>
+      <div class="faq-answer">
+        You can apply online through <a href="https://www.johnstonesupply.com/store652/request-account" target="_blank">this link</a>, or visit your local branch to get started!
+      </div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">Do you provide services other than HVAC parts and equipment?<span>+</span></div>
+      <div class="faq-answer">
+        Yes! Aside from HVAC parts and equipment, we also carry refrigerant and plumbing products! We pride ourselves in being your 'one stop shop', and if we don't have it on hand, we can get it delivered faster than the other guy can.<br><br>
+        Aside from that, we also provide live technical support, warranty processing, training and events, and educational courses to help not only understand the product, but to help run your business efficiently.
+      </div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">Can I order online?<span>+</span></div>
+      <div class="faq-answer">
+        Yes! You can place orders, check pricing and availability, and more once you get your online account set up. You can even download the Johnstone Supply OE Touch app to order through your phone!<br><br>
+        <a href="https://www.johnstonesupply.com/store652/oe-touch-web-access" target="_blank">Click this link to sign up!</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.querySelectorAll('.faq-question').forEach(q => {
+      q.addEventListener('click', () => {
+        const active = q.classList.contains('active');
+        document.querySelectorAll('.faq-question').forEach(el => el.classList.remove('active'));
+        document.querySelectorAll('.faq-answer').forEach(a => a.style.display = 'none');
+        if (!active) {
+          q.classList.add('active');
+          q.nextElementSibling.style.display = 'block';
+        }
+      });
+    });
+
+    document.getElementById('search').addEventListener('input', function () {
+      const term = this.value.toLowerCase();
+      document.querySelectorAll('.faq-item').forEach(item => {
+        const text = item.textContent.toLowerCase();
+        item.style.display = text.includes(term) ? '' : 'none';
+      });
+    });
+  </script>
+</body>
+</html>
